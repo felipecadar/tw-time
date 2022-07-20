@@ -71,6 +71,7 @@ function calc() {
         offset = new Date(t)
         exit_date = new Date(chegada - offset)
         exit_times[key] = exit_date
+        offset_times[key] = t/60000
     } 
 
 
@@ -78,6 +79,17 @@ function calc() {
         exit_date = exit_times[key]
         let time_str = `${exit_date.getDay()} ${meses[exit_date.getMonth()]}  ${exit_date.getHours()}h ${exit_date.getMinutes()}m ${exit_date.getSeconds()}s`
         document.getElementById(key).innerHTML = time_str
+        
+        
+        offset = offset_times[key]
+        hours = parseInt(offset/60)
+        minutes = parseInt(offset - (60*hours))
+        seconds = parseInt((offset - parseInt(offset))*60)
+        let offset_str = `${hours}h ${minutes}m ${seconds}s`
+        document.getElementById(`total-${key}`).innerHTML = offset_str
+
+
+
     }
 
 
