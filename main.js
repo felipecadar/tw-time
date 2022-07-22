@@ -77,7 +77,8 @@ function calc() {
 
     for (const key in exit_times) {
         exit_date = exit_times[key]
-        let time_str = `${exit_date.getDay()} ${meses[exit_date.getMonth()]}  ${exit_date.getHours()}h ${exit_date.getMinutes()}m ${exit_date.getSeconds()}s`
+        let time_str = ` ${exit_date.getHours()}h ${exit_date.getMinutes()}m ${exit_date.getSeconds()}s`
+        // let time_str = `${exit_date.getDay()} ${meses[exit_date.getMonth()]}  ${exit_date.getHours()}h ${exit_date.getMinutes()}m ${exit_date.getSeconds()}s`
         document.getElementById(key).innerHTML = time_str
         
         
