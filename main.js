@@ -99,6 +99,8 @@ function calc(e) {
         offset_times[key] = t/60000
     } 
 
+    var min_diff = 10000000000
+    var min_key = ''
 
     for (const key in exit_times) {
         exit_date = exit_times[key]
@@ -114,9 +116,23 @@ function calc(e) {
         let offset_str = `${hours}h ${minutes}m ${seconds}s`
         document.getElementById(`total-${key}`).innerHTML = offset_str
 
+        // <div class="alert alert-primary" role="alert">
 
+        let now_date = new Date()
+        let diff_hours = Math.abs(now_date.getHours() - exit_date.getHours())
+        let diff_minutes = Math.abs(now_date.getMinutes() - exit_date.getMinutes())
+        let diff_seconds = Math.abs(now_date.getSeconds() - exit_date.getSeconds())
 
+        let total_diff = (diff_hours * 60 * 60) + (diff_minutes * 60) + diff_seconds
+        
+        if (total_diff < min_diff){
+            min_diff = total_diff
+            min_key = key
+        }
     }
+
+    document.getElementById(min_key).parentElement.setAttribute("class", "alert alert-primary");
+    document.getElementById(min_key).parentElement.setAttribute("role", "alert");
 
     return false
 }
