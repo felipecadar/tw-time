@@ -4,6 +4,27 @@ Date.prototype.addDays = function(days) {
     return date;
 }
 
+function startPage(){
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+
+    
+    if (params.source){
+        console.log("source", params.source)
+        document.getElementById("coord1").value = params.source
+    }
+    if (params.target){
+        console.log("target", params.target)
+        document.getElementById("coord2").value = params.target
+    }
+    if(params.arrival){
+        console.log("arrival", params.arrival)
+        document.getElementById("chegada").value = params.arrival
+
+        calc(null)
+    }
+}
+
 function movingTime(fields){
     return {
         'lanc':18*fields*60000,
@@ -52,7 +73,11 @@ function cedo(){
     document.getElementById("chegada").value = "8:0:0"
 }
 
-function calc() {
+function calc(e) {
+    if(e){
+        e.preventDefault();
+    }
+
     meses = ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec',]
 
     // let today = new Date()
@@ -93,15 +118,5 @@ function calc() {
 
     }
 
-
-    // document.getElementById("meses").innerHTML = meses_completos
-    // document.getElementById("anos").innerHTML = anos_completos
-
-    // document.getElementById("resp_capital_mes").innerHTML = capital
-    // document.getElementById("resp_juros_mes").innerHTML = resp_juros_mes
-    // document.getElementById("resp_final_mes").innerHTML = resp_final_mes
-
-    // document.getElementById("resp_capital_ano").innerHTML = capital
-    // document.getElementById("resp_juros_ano").innerHTML = resp_juros_ano
-    // document.getElementById("resp_final_ano").innerHTML = resp_final_ano
+    return false
 }
