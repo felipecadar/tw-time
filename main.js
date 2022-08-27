@@ -73,6 +73,10 @@ function cedo(){
     document.getElementById("chegada").value = "8:0:0"
 }
 
+function tarde(){
+    document.getElementById("chegada").value = "23:59:59"
+}
+
 function calc(e) {
     if(e){
         e.preventDefault();
